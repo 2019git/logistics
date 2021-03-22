@@ -1,0 +1,84 @@
+logging:
+  level:
+    root: INFO
+  config: classpath:logback-spring.xml
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  application:
+    name: company-logistics
+  datasource:
+    name: test
+    url: jdbc:mysql://127.0.0.1:3306/company-logistics?serverTimezone=GMT&characterEncoding=UTF8&useServerPrepStmts=false&rewriteBatchedStatements=true&useSSL=false&autoReconnect=true
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+  redis:
+    address: redis://127.0.0.1:6379/0
+    host: 127.0.0.1
+    password:
+    port: 6379
+    timeout: 7200
+    database: 0
+    jedis:
+      pool:
+        max-idle: 100
+        min-idle: 1
+        max-active: 1000
+        max-wait: -1
+  servlet:
+    multipart:
+      maxFileSize: 100MB
+      maxRequestSize: 100MB
+  aop:
+    auto: true
+    proxy-target-class: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+#mybatis:
+#  basepackage: com.company.logistics.mapper.mapper
+#  #配置mapper xml文件所在的路径
+#  mapper-locations: classpath:mappers/**/*.xml
+#  #xmlLocation: classpath:mappers/**/*.xml
+#  #mappers: tk.mybatis.mapper.common.Mapper
+#  identity: MYSQL
+#  order: AFTER
+#  typeAliasesPackage: com.company.logistics.mapper.entity.*.*
+#  configuration:
+#    map-underscore-to-camel-case: true
+#  mapper-refresh:
+#    enabled: true
+#    delaySeconds: 30
+#    sleepSeconds: 10
+#    mappingPath: mapper
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  #servlet:
+  #  context-path: /server/
+mybatis-plus:
+  mapper-locations: classpath*:/mappers/**/*.xml
+  type-aliases-package: com.company.logistics.mapper.entity.*.*
+  configuration:
+    map-underscore-to-camel-case: true   # 开启驼峰命名
