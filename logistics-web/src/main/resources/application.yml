@@ -12,7 +12,7 @@ spring:
     name: company-logistics
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/company-logistics?serverTimezone=GMT&characterEncoding=UTF8&useServerPrepStmts=false&rewriteBatchedStatements=true&useSSL=false&autoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3306/company-logistics?serverTimezone=Asia/Shanghai&characterEncoding=UTF8&useServerPrepStmts=false&rewriteBatchedStatements=true&useSSL=false&autoReconnect=true
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource

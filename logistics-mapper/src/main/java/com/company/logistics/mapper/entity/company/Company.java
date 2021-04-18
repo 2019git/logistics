@@ -9,9 +9,6 @@ import java.util.Date;
 @Data
 @Table(name = "tb_sys_company")
 public class Company implements Serializable {
-
-    private Long id;
-
     /**
      * 企业名称
      */
@@ -81,14 +78,4 @@ public class Company implements Serializable {
      * 身份证反面照片id
      */
     private String idCardReverse;
-
-    private Date createDate;
-
-    private Date updateDate;
-
-    private String createUser;
-
-    private String updateUser;
-
-    private Boolean deleted;
 }
