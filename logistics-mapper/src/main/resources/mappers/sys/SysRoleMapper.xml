@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.logistics.mapper.mapper.sys.SysRoleMapper">
+
+    <select id="queryList" resultType="com.company.logistics.vo.sys.SysRoleVo">
+        SELECT
+             id AS id,
+             name AS name,
+             remark AS remark,
+             create_date AS createDate,
+             update_date AS updateDate,
+             create_user AS createUser,
+             update_user AS updateUser,
+             deleted AS deleted
+             FROM tb_sys_role
+        WHERE deleted = 0
+        ORDER BY create_date DESC
+    </select>
+
+</mapper>
