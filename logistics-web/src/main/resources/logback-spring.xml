@@ -35,6 +35,50 @@
         </triggeringPolicy>
     </appender>
 
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/debug.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>${logback.maxday}</MaxHistory>
+        </rollingPolicy>
+        <layout>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger:%line]--%mdc{client} %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志文件最大的大小-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+
+    <appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/warn.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>${logback.maxday}</MaxHistory>
+        </rollingPolicy>
+        <layout>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger:%line]--%mdc{client} %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志文件最大的大小-->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+
     <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -56,29 +100,20 @@
         </triggeringPolicy>
     </appender>
     <!--myibatis log configure-->
-    <!-- <logger name="tk.mybatis" level="DEBUG"/>-->
-    <!-- <logger name="com.yiside" level="DEBUG"/>-->
-    <logger name="ERROR_LOGGER" additivity="false" level="ERROR">
-        <appender-ref ref="ERROR_FILE"/>
+    <logger name="tk.mybatis" level="DEBUG"/>
+    <logger name="com.company" level="DEBUG"/>
+    <logger name="FILE_LOGGER" additivity="false" level="INFO">
+        <appender-ref ref="INFO_FILE"/>
     </logger>
 
-    <root level="INFO">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="INFO_FILE"/>
-    </root>
-
-    <root level="ERROR">
-        <appender-ref ref="ERROR_FILE"/>
-    </root>
-
-    <!--<root level="TRACE">
+    <root level="TRACE">
         <appender-ref ref="INFO_FILE"/>
         <appender-ref ref="WARN_FILE"/>
         <appender-ref ref="ERROR_FILE"/>
-    </root>-->
+    </root>
     <!-- 日志输出级别 -->
-    <!--<root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
-    </root>-->
+    </root>
 
 </configuration>

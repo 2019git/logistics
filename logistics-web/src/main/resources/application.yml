@@ -54,23 +54,6 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     default-property-inclusion: non_null
-#mybatis:
-#  basepackage: com.company.logistics.mapper.mapper
-#  #配置mapper xml文件所在的路径
-#  mapper-locations: classpath:mappers/**/*.xml
-#  #xmlLocation: classpath:mappers/**/*.xml
-#  #mappers: tk.mybatis.mapper.common.Mapper
-#  identity: MYSQL
-#  order: AFTER
-#  typeAliasesPackage: com.company.logistics.mapper.entity.*.*
-#  configuration:
-#    map-underscore-to-camel-case: true
-#  mapper-refresh:
-#    enabled: true
-#    delaySeconds: 30
-#    sleepSeconds: 10
-#    mappingPath: mapper
-
 server:
   port: 8080
   tomcat:
@@ -80,5 +63,15 @@ server:
 mybatis-plus:
   mapper-locations: classpath*:/mappers/**/*.xml
   type-aliases-package: com.company.logistics.mapper.entity.*.*
+  basepackage: com.company.logistics.**.mapper
+  xmlLocation: classpath:mappers/**/*.xml
+  mappers: com.company.logistics.base.BaseMapper
+  identity: MYSQL
+  order: AFTER
   configuration:
     map-underscore-to-camel-case: true   # 开启驼峰命名
+  mapper-refresh:
+    enabled: true
+    delaySeconds: 30
+    sleepSeconds: 10
+    mappingPath: mybatis

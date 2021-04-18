@@ -14,26 +14,8 @@
     <dependencies>
         <dependency>
             <groupId>com.company</groupId>
-            <artifactId>logistics-common</artifactId>
+            <artifactId>logistics-dto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!--&lt;!&ndash;Mybatis &ndash;&gt;-->
-        <!--<dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>${mybatis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>${mybatis.spring.version}</version>
-        </dependency>-->
-        <!--分页插件 -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>${pagehelper.version}</version>
         </dependency>
     </dependencies>
 </project>
