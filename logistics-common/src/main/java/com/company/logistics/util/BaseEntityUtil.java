@@ -15,6 +15,8 @@ import java.util.Date;
  */
 public class BaseEntityUtil {
 
+    public static String[] ignoreProperties = new String[]{"id", "deleted", "createDate", "updateDate", "createUser", "updateUser"};
+
     public static <T extends BaseEntity> void createEntityInfo(T t){
         addEntityDate(t);
         addEntityUser(t);

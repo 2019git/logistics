@@ -2,6 +2,10 @@ package com.company.logistics.base;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,16 +16,23 @@ import java.util.Date;
  */
 public class BaseEntity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
+    @Column(name = "create_date")
     protected Date createDate;
 
+    @Column(name = "update_date")
     protected Date updateDate;
 
+    @Column(name = "create_user")
     protected String createUser;
 
+    @Column(name = "update_user")
     protected String updateUser;
 
+    @Column(name = "deleted")
     protected Boolean deleted;
 
     public BaseEntity(){

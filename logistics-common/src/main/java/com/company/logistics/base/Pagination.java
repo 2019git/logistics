@@ -23,6 +23,11 @@ public class Pagination<T> {
     private Integer size;
 
     /**
+     * 总页数
+     */
+    private Integer totalPage;
+
+    /**
      * 总条数
      */
     private Integer total;
@@ -32,4 +37,14 @@ public class Pagination<T> {
      */
     private List<T> rows;
 
+    public Pagination() {
+    }
+
+    public Pagination(Integer page, Integer size, Integer total, List<T> rows) {
+        this.page = page;
+        this.size = size;
+        this.total = total;
+        this.rows = rows;
+        this.totalPage = (int) Math.ceil((double) total / size);
+    }
 }
