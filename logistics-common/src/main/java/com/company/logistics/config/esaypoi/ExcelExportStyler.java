@@ -1,4 +1,4 @@
-package com.company.logistics.config;
+package com.company.logistics.config.esaypoi;
 
 import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
 import cn.afterturn.easypoi.excel.entity.params.ExcelForEachParams;

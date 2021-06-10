@@ -1,15 +1,21 @@
 package com.company.logistics.service.sys.impl;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.company.logistics.base.BaseServiceImpl;
 import com.company.logistics.base.PageParam;
 import com.company.logistics.base.Pagination;
+import com.company.logistics.config.esaypoi.ExcelExportStyler;
 import com.company.logistics.mapper.entity.sys.SysUser;
 import com.company.logistics.mapper.mapper.sys.SysUserMapper;
 import com.company.logistics.service.sys.SysUserService;
 import com.company.logistics.util.BaseEntityUtil;
 import com.company.logistics.vo.sys.SysUserVo;
+import com.company.logistics.vo.sys.export.UserExportVo;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Lists;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +60,23 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     @Override
     public void deleteInfo(Long id) {
         mapper.deleteInfo(id);
+    }
+
+    @Override
+    public Workbook exportExcelUserInfo() {
+        List<SysUser> sysUsers = this.selectList();
+        List<UserExportVo> exportVoList = Lists.transform(sysUsers, item -> new UserExportVo(item.getId(), item.getLoginAccount(), item.getPhone(), item.getUserName()));
+        //导出
+        ExportParams exportParams = new ExportParams();
+        //大标题
+        exportParams.setTitle("用户信息导出");
+        //sheet页名称
+        exportParams.setSheetName("user");
+        //样式
+        exportParams.setStyle(ExcelExportStyler.class);
+        // 生成workbook 并导出
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, UserExportVo.class, exportVoList);
+        return workbook;
     }
 
 }

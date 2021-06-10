@@ -6,12 +6,18 @@ import java.util.Map;
 import com.company.logistics.base.PageParam;
 import com.company.logistics.base.Pagination;
 import com.company.logistics.base.Result;
+import com.company.logistics.config.esaypoi.ExportResponseConfig;
 import com.company.logistics.service.sys.SysUserService;
 import com.company.logistics.vo.sys.SysUserVo;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -91,5 +97,19 @@ public class SysUserController {
     public Result deleteInfo(HttpServletRequest request, @PathVariable("id") Long id) {
         sysUserService.deleteInfo(id);
         return Result.success();
+    }
+
+    /**
+     * 用户信息导出
+     *
+     * @author wangzhijun
+     * @email developer@gmail.com
+     * @date 2021/6/10 23:57
+     */
+    @GetMapping("/exportExcelCarrierOrder")
+    public ResponseEntity<Resource> exportExcelCarrierOrder(HttpServletRequest request, HttpServletResponse response) {
+        Workbook workbook = sysUserService.exportExcelUserInfo();
+        ExportResponseConfig.addExportExcelResponse(response, workbook, "user");
+        return new ResponseEntity<Resource>(null, null, HttpStatus.OK);
     }
 }
