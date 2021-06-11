@@ -6,6 +6,7 @@ import com.company.logistics.base.BaseServiceImpl;
 import com.company.logistics.base.PageParam;
 import com.company.logistics.base.Pagination;
 import com.company.logistics.config.esaypoi.ExcelExportStyler;
+import com.company.logistics.config.esaypoi.IExcelExportUtil;
 import com.company.logistics.mapper.entity.sys.SysUser;
 import com.company.logistics.mapper.mapper.sys.SysUserMapper;
 import com.company.logistics.service.sys.SysUserService;
@@ -75,7 +76,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         //样式
         exportParams.setStyle(ExcelExportStyler.class);
         // 生成workbook 并导出
-        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, UserExportVo.class, exportVoList);
+        Workbook workbook = IExcelExportUtil.exportExcel(exportParams, UserExportVo.class, null, exportVoList);
         return workbook;
     }
 
